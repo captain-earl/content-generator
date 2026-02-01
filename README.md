@@ -21,7 +21,9 @@ AI-powered content generation tool that creates SEO-optimized blog posts, featur
 
 ## Live Demo
 
-https://content-generator-cg8smuoj0-earls-projects-b703942d.vercel.app
+https://content-generator-mu.vercel.app
+
+**Note:** The app runs in demo mode by default. Add your `KIMI_API_KEY` environment variable in Vercel to enable AI-generated content.
 
 ## Setup
 
