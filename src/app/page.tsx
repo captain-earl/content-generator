@@ -36,6 +36,7 @@ export default function Home() {
   const [result, setResult] = useState<GeneratedContent | null>(null);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState<string>('');
+  const [isDemo, setIsDemo] = useState(false);
 
   const handleGenerate = async () => {
     if (!topic || !keywords) {
@@ -60,6 +61,7 @@ export default function Home() {
         throw new Error(data.error || 'Failed to generate content');
       }
 
+      setIsDemo(data.demo || false);
       setResult(data.data);
     } catch (err) {
       setError((err as Error).message);
@@ -202,6 +204,18 @@ ${result.socialSnippets.linkedinPost}
         {/* Results */}
         {result && (
           <div className="max-w-4xl mx-auto space-y-6">
+            {/* Demo Mode Banner */}
+            {isDemo && (
+              <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-lg p-4 flex items-center gap-3">
+                <Sparkles className="w-5 h-5 text-yellow-400" />
+                <p className="text-yellow-200">
+                  <strong>Demo Mode:</strong> Running with template content. Add your 
+                  <code className="bg-yellow-500/20 px-1.5 py-0.5 rounded text-yellow-300 mx-1">KIMI_API_KEY</code> 
+                  environment variable for AI-generated content.
+                </p>
+              </div>
+            )}
+
             {/* Actions Bar */}
             <div className="flex flex-wrap gap-3 justify-end">
               <button

@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Content Generator
 
-## Getting Started
+AI-powered content generation tool that creates SEO-optimized blog posts, featured images, and social media snippets.
 
-First, run the development server:
+## Features
 
+- **Blog Post Generation**: Creates 1,500+ word SEO-optimized blog posts
+- **Meta Description**: Auto-generates compelling meta descriptions
+- **Featured Images**: AI-generated featured images using Pollinations
+- **Social Media Snippets**: Twitter threads and LinkedIn posts
+- **SuperMemory Integration**: Automatically stores generated content
+
+## Tech Stack
+
+- Next.js 15
+- TypeScript
+- Tailwind CSS
+- Kimi API (content generation)
+- Pollinations AI (image generation)
+- SuperMemory (content storage)
+
+## Live Demo
+
+https://content-generator-cg8smuoj0-earls-projects-b703942d.vercel.app
+
+## Setup
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/captain-earl/content-generator.git
+cd content-generator
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables in Vercel:
+```
+KIMI_API_KEY=your_kimi_api_key
+SUPERMEMORY_API_KEY=your_supermemory_key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Deploy to Vercel:
+```bash
+vercel --prod
+```
 
-## Learn More
+## Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `KIMI_API_KEY` | Kimi AI API key for content generation | Yes |
+| `SUPERMEMORY_API_KEY` | SuperMemory API key for storage | No |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Enter your blog topic
+2. Add keywords (comma-separated)
+3. Select tone (professional, casual, friendly, authoritative)
+4. Click "Generate Content"
+5. Download results as Markdown or copy individual sections
 
-## Deploy on Vercel
+## API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### POST /api/generate
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Generate content for a topic.
+
+**Request:**
+```json
+{
+  "topic": "HVAC Maintenance Tips",
+  "keywords": "HVAC, maintenance, air conditioning, heating",
+  "tone": "professional"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "topic": "...",
+    "blogPost": "...",
+    "metaDescription": "...",
+    "featuredImage": "...",
+    "socialSnippets": {
+      "twitterThread": ["..."],
+      "linkedinPost": "..."
+    }
+  }
+}
+```
+
+## License
+
+MIT
